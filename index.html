@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Virtue.exe — Ascension System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#0d0f1a">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+    }
+  </script>
+</head>
+<body>
+  <!-- Chaotic Rebirth Overlay -->
+  <div id="bootOverlay">
+    <div id="bootConsole"></div>
+    <div id="bootTitle">VIRTUE</div>
+    <div id="bootSubtitle">ASCENSION SYSTEM ONLINE</div>
+  </div>
+
+  <header>
+    <h1>Virtue.exe — Ascension System</h1>
+    <div id="season">Monk Mode • Nov–Dec 2025</div>
+  </header>
+
+  <nav id="tabs">
+    <button data-tab="dashboard" class="active">Dashboard</button>
+    <button data-tab="log">Log Day</button>
+    <button data-tab="quests">Quests</button>
+    <button data-tab="achievements">Achievements</button>
+    <button data-tab="skills">Skills</button>
+    <button data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="tab active">
+      <div class="rankline"><span id="rankTitle">INITIATE</span><span id="rankHint"></span></div>
+      <div class="auraWrap">
+        <div class="auraGauge" id="auraGauge"><div class="auraCore"></div></div>
+        <div class="auraText"><div>Aura Density</div><strong id="auraVal">0%</strong></div>
+      </div>
+
+      <div class="card">
+        <div class="stat"><span>Total XP</span><strong id="totalXP">0</strong></div>
+        <div class="stat"><span>Level</span><strong id="level">1</strong></div>
+        <div class="stat"><span>XP to Next</span><strong id="xpToNext">—</strong></div>
+      </div>
+      <div class="progress">
+        <div id="xpBar" class="bar"></div>
+      </div>
+      <div class="grid">
+        <div class="mini"><span>Week Hours</span><strong id="weekHours">0</strong></div>
+        <div class="mini"><span>Best Day XP</span><strong id="bestDayXP">0</strong></div>
+        <div class="mini"><span>Streak</span><strong id="streak">0</strong></div>
+      </div>
+
+      <div id="sysLog" class="card console"></div>
+      <div class="card tip" id="paceHint">Keep stacking wins.</div>
+    </section>
+
+    <section id="log" class="tab">
+      <div class="card">
+        <label>Date <input type="date" id="dateInput"></label>
+        <div class="grid2">
+          <label>Deep Work (hrs)<input type="number" min="0" step="0.25" id="deepWork"></label>
+          <label>Content (hrs)<input type="number" min="0" step="0.25" id="content"></label>
+          <label>Streaming (hrs)<input type="number" min="0" step="0.25" id="stream"></label>
+          <label>Gym (hrs)<input type="number" min="0" step="0.25" id="gym"></label>
+          <label>Read/Meditate (hrs)<input type="number" min="0" step="0.25" id="read"></label>
+          <label>College (hrs)<input type="number" min="0" step="0.25" id="college"></label>
+        </div>
+        <div class="grid2">
+          <label>Daily Quests Done<input type="number" min="0" step="1" id="questsCount"></label>
+          <label>Temptations Resisted<input type="number" min="0" step="1" id="resisted"></label>
+          <label>Sin Slips (Lust/Envy/Wrath)<input type="number" min="0" step="1" id="slips"></label>
+          <label>Flow State?
+            <select id="buff"><option value="">No</option><option value="Y">Yes</option></select>
+          </label>
+          <label>Distraction?
+            <select id="debuff"><option value="">No</option><option value="Y">Yes</option></select>
+          </label>
+        </div>
+        <label>Notes<textarea id="notes" rows="3" placeholder="What did you build today?"></textarea></label>
+        <button id="saveDay">Save Day</button>
+      </div>
+      <div id="recentDays"></div>
+    </section>
+
+    <section id="quests" class="tab">
+      <div class="card">
+        <h3>Daily Quests (+15 to +25 XP each)</h3>
+        <ul>
+          <li>No phone first hour</li>
+          <li>Post/draft 1 TikTok</li>
+          <li>45+ min focused deep work</li>
+          <li>Workout completed</li>
+          <li>15m reading + 5m meditation</li>
+          <li>Evening 3 gratitudes</li>
+        </ul>
+        <h3>Weekly Quests</h3>
+        <ul>
+          <li>1 long-form YouTube (+150)</li>
+          <li>3+ streams (+100)</li>
+          <li>30+ deep work hours (+120)</li>
+          <li>5 gym sessions (+80)</li>
+          <li>Zero weed/vape all week (+200)</li>
+          <li>Plan & script next week (+60)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="achievements" class="tab">
+      <div class="card">
+        <div id="achieveList"></div>
+        <button id="addAchieve">Mark Achievement…</button>
+      </div>
+    </section>
+
+    <section id="skills" class="tab">
+      <div class="card">
+        <h3>Virtues</h3>
+        <div id="virtuesGrid" class="skillgrid"></div>
+      </div>
+      <div class="card">
+        <h3>Sins</h3>
+        <div id="sinsGrid" class="skillgrid"></div>
+      </div>
+      <div class="card tip" id="balanceTip">Balance Score: 0</div>
+    </section>
+
+    <section id="settings" class="tab">
+      <div class="card">
+        <h3>Multipliers</h3>
+        <div class="grid2" id="multis"></div>
+        <h3>Season Target</h3>
+        <label>Target Level <input type="number" id="targetLevel" min="1" max="100"></label>
+        <button id="saveSettings">Save Settings</button>
+        <button id="exportData" class="ghost">Export Backup</button>
+        <input id="importFile" type="file" accept="application/json" style="display:none;">
+        <button id="importData" class="ghost">Import Backup</button>
+        <button id="resetAll" class="danger">Reset All Data</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>Virtue.exe © 2025</footer>
+  <script src="app.js"></script>
+</body>
+</html>
