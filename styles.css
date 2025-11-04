@@ -67,3 +67,15 @@ footer{padding:30px 0 50px;text-align:center;opacity:.55}
 .fill{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#84cc16)}
 .passives{font-size:12px;opacity:.95;margin-top:6px}
 .tab{transition:opacity .2s ease}
+nav#tabs {
+  display: flex;
+  flex-wrap: wrap;          /* lets buttons break to next line if needed */
+  justify-content: space-between;
+  max-width: 100%;          /* keeps it inside the 430px wrapper */
+  overflow-x: hidden;       /* hides any tiny overflow */
+}
+
+nav#tabs button {
+  flex: 1 1 auto;
+  min-width: 0;             /* prevents button text from forcing overflow */
+  text-overflow: ellipsis;  /* if text is long, it’ll gracefully shorten */
