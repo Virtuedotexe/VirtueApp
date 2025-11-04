@@ -1,3 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;     /* prevents horizontal scroll */
+}
+
+#app {
+  max-width: 430px;       /* locks it to iPhone 15 Pro width */
+  margin: 0 auto;         /* centers everything */
+}
+
 *{box-sizing:border-box}
 :root{--gold:#facc15;--blue:#60a5fa;--bg1:#06080f;--bg2:#0a0e1a;--panel:rgba(10,12,18,0.55);--border:#273246}
 body{margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e7ecf5;font-family:'Exo 2',system-ui,-apple-system,Segoe UI,Roboto}
